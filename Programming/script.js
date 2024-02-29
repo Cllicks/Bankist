@@ -179,7 +179,41 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
-btnClose.addEventListener('click')
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputLoanAmount.valure);
+
+  if(amount > 0 && currnentAccount.movements.some(mov => >= amount * 0.1)) {
+  // Add movement
+  currentAccount.movements.push(amount);
+
+// Update UI
+  updateUI(currentAccountAccount)
+  }
+  inputLoanAmount.value = '';
+})
+
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if(inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === currentAccount.pin)
+  {
+    const index = accoubnts.findIndex(acc => acc.username === currentAccount.username);
+    console.log(index);
+
+      // delete account
+    accounts.splice(index, 1);
+
+    // hide UI
+    containerApp.style.opacity = 0;
+
+  }  
+
+  inputCloseUsername.value = inputClosePin.value = ' ';
+
+})
 /////////////////////////////////////////////////
 ////////////////////////////////////////////////
 const currencies = new Map([
@@ -252,4 +286,4 @@ console.log(firstWithdrawal);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
 
-/Users/christiansekellick/Desktop/Projects/11-Bankist Application
+const overtalBalance = accounts.map(acc => acc.movements).flat().reduce((acc, mov) => acc + mov, 0);
