@@ -64,6 +64,8 @@ const inputClosePin = document.querySelector('.form__input--pin');
 const displayMovements = function (movements) {
   containerMovements.innerHTML = '';
 
+  const movs = sort ? movements.slice().sort((a,b) => a - b) : movements;
+
   movements.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
@@ -212,8 +214,14 @@ btnClose.addEventListener('click', function (e) {
   }  
 
   inputCloseUsername.value = inputClosePin.value = ' ';
-
 })
+
+let sorted = false;
+btnSort.addEventListener('click', fucntion(e) {
+  e.preventDefault();
+  displayMovements(currentAmount.movements, !sorted);
+  sorted = !sorted
+});
 /////////////////////////////////////////////////
 ////////////////////////////////////////////////
 const currencies = new Map([
@@ -286,4 +294,4 @@ console.log(firstWithdrawal);
 const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
 
-const overtalBalance = accounts.map(acc => acc.movements).flat().reduce((acc, mov) => acc + mov, 0);
+const overalBalance = accounts.map(acc => acc.movements).flat().reduce((acc, mov) => acc + mov, 0);
