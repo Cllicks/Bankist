@@ -295,3 +295,12 @@ const account = accounts.find(acc => acc.owner === 'Jessica Davis');
 console.log(account);
 
 const overalBalance = accounts.map(acc => acc.movements).flat().reduce((acc, mov) => acc + mov, 0);
+
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(document.querySelectorAll('.movements__value'),
+  el => Number(el.textContent.replace('€', '')));
+
+  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+  
+});
+
