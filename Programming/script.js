@@ -301,6 +301,30 @@ labelBalance.addEventListener('click', function () {
   el => Number(el.textContent.replace('€', '')));
 
   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
-  
+
 });
+
+const bankDepositSum = accounts.flatMap(acc => acc.movements).filter(mov => mov > 0).reduce((sum, cur) => sum + cur, 0);
+
+const numDeposits1000 = account.flatMap(acc => acc.movements).filter(mov => mov >= 1000).length
+
+const { deposits, withdrawals } = accounts.flatMap(acc => acc.movements).reduce((sums,cur) => {
+  sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur;
+  return sums;
+};
+{deposits: 0, withdrawals: 0}
+);
+
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+  const exceptions = ['a', 'an', 'the', 'but', 'and', 'or', 'on', 'in', 'with'];
+
+  const titleCase = title.toLowerCase().split(' ').map(word => exceptions.includes(word) : word[0].toUpperCase() + word.slice(1);
+  ).join(' ')
+  return capitalize(titleCase);
+}
+
+
+
 
